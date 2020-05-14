@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateMailRequest;
 use App\models\Mail;
 use Illuminate\Http\Request;
 
@@ -37,7 +38,7 @@ class MailController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateMailRequest $request)
     {
         Mail::create($request->only(['sender','subject']));
         return redirect(route('mails.index'));

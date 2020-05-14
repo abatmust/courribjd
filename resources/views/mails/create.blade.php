@@ -6,8 +6,10 @@
 
 <div class="container">
     <h2>un nouveau courrier</h2>
-<form action="{{ route('mails.store') }}" method="POST">
-    @csrf
+    <x-errors></x-errors>
+    
+    <form action="{{ route('mails.store') }}" method="POST">
+        @csrf
         <div class="form-group row">
             <label for="sender" class="col-1 col-form-label">sender</label>
             <div class="col-5">

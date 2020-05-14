@@ -16,7 +16,9 @@
             @foreach ($users as $user)
             <tr>
                 <td scope="row">{{ $user->id }}</td>
-                <td>{{ $user->name }}</td>
+                <td>
+                    <a href="{{route('users.show', ['user' => $user->id])}}" class="badge badge-info">{{ $user->name }}</a>
+                </td>
                 <td>{{ $user->email }}</td>
                 <td>
                     @forelse ($user->roles as $role)
