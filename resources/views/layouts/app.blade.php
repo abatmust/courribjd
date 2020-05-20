@@ -73,6 +73,20 @@
                 </div>
             </div>
         </nav>
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link active" href="{{route('users.index')}}">users</a>     
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="{{route('mails.index')}}">mails</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="{{route('mails.create')}}">nouveau courrier</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="{{route('roles.index')}}">gérer les rôles</a>
+            </li>
+        </ul>
 
         <main class="py-4">
             @yield('content')

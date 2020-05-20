@@ -13,7 +13,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($mails as $mail)
+            @forelse ($mails as $mail)
             <tr>
                 <td scope="row">{{ $mail->id }}</td>
                 <td>{{ $mail->sender }}</td>
@@ -26,7 +26,9 @@
                     @endforelse
                 </td>
             </tr>
-            @endforeach
+            @empty
+            <h1>no mails in the database</h1>
+            @endforelse
         </tbody>
     </table>
     

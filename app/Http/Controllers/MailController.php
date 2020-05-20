@@ -40,7 +40,7 @@ class MailController extends Controller
      */
     public function store(CreateMailRequest $request)
     {
-        Mail::create($request->only(['sender','subject']));
+        Mail::create($request->only(['sender','subject','saf_num', 'saf_date', 'bjd_num', 'bjd_date', 'saf_note']));
         return redirect(route('mails.index'));
     }
 
