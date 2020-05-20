@@ -26,6 +26,7 @@ class CreateMailRequest extends FormRequest
         return [
             'sender' => 'required|min:2',
             'subject' => 'required|min:10'
+            
         ];
     }
 }

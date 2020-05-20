@@ -16,13 +16,11 @@ class CreateMailsTable extends Migration
     {
         Schema::create('mails', function (Blueprint $table) {
             $table->id();
-            $table->mediumInteger('saf_num')->nullable()->default(null);
-            $table->date('saf_date')->nullable()->default(null);
-            $table->mediumInteger('bjd_num')->nullable()->default(null);
-            $table->date('bjd_date')->nullable()->default(null);
             $table->string('sender');
-            $table->string('saf_note')->nullable()->default(null);
             $table->text('subject');
+            $table->mediumInteger('num_bjd')->nullable()->default(null);
+            $table->date('date_bjd')->nullable()->default(null);
+            $table->string('section',15)->nullable()->default(null);
             $table->timestamps();
         });
     }
