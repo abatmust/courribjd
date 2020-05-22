@@ -11,4 +11,7 @@ class Mail extends Model
     public function users(){
         return $this->belongsToMany(User::class);
     }
+    public function saf_arrived(){
+        return $this->hasOne(Saf_arrived::class);
+    }
 }

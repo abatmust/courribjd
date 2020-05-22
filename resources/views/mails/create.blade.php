@@ -2,49 +2,111 @@
 
 @section('content')
 
-
-
 <div class="container">
-    <h2>un nouveau courrier</h2>
-    <x-errors></x-errors>
-    
-    <form action="{{ route('mails.store') }}" method="POST">
-        @csrf
-        <div class="form-group row">
-            <label for="sender" class="col-1 col-form-label my-2">Expéditeur</label>
-            <div class="col-4 my-2">
-                <input type="text" class="form-control" name="sender" id="sender" placeholder="expéditeur" value = {{ old('sender')}}>
-            </div>
-            <label for="subject" class="col-2 col-form-label my-2">Objet de la correspondance</label>
-            <div class="col-5 my-2">
-                <textarea class="form-control" name="subject" id="subject" placeholder="objet de la correspendance" rows="3" value = {{ old('subject')}}></textarea>
-            </div>     
-            <label for="saf_num" class="col-1 col-form-label my-2">N° SAF</label>
-            <div class="col-2 my-2">
-                <input type="text" class="form-control" name="saf_num" id="saf_num" placeholder="n° du saf" value = {{ old('saf_num')}}>
-            </div>
-            <label for="saf_date" class="col-1 col-form-label my-2">Date SAF</label>
-            <div class="col-2 my-2">
-                <input type="text" class="form-control" name="saf_date" id="saf_date" placeholder="date du saf" value = {{ old('saf_date')}}>
-            </div>
-            <label for="bjd_num" class="col-1 col-form-label my-2">N° BJD</label>
-            <div class="col-2 my-2">
-                <input type="text" class="form-control" name="bjd_num" id="bjd_num" placeholder="n° du bjd" value = {{ old('bjd_num')}}>
-            </div>
-            <label for="bjd_date" class="col-1 col-form-label my-2">Date BJD</label>
-            <div class="col-2 my-2">
-                <input type="text" class="form-control" name="bjd_date" id="bjd_date" placeholder="date du BJD" value = {{ old('bjd_date')}}>
-            </div>
-            <label for="saf_note" class="col-2 col-form-label my-2">Remarque du chef du SAF</label>
-            <div class="col-4 my-2">
-                <input type="text" class="form-control" name="saf_note" id="saf_note" placeholder="Remarque du chef du SAF" value = {{ old('saf_note')}}>
-            </div>
-            <div class="col-4 my-2">
-                <button type="submit" class="btn btn-primary btn-block">Action</button>
-            </div>
-        </div>               
-        
-    </form>
+    <div class="p-1 row">
+
+        <x-errors></x-errors>
+
+        <h3 class="col-12">ajouter un nouveau courrier</h3>
+        <form action="{{ route('mails.store') }}" method="POST" class="row">
+            @csrf
+            <fieldset class="m-1 border border-secondary p-1 rounded col">
+                <legend class="border border-secondary text-center rounded">BJD</legend>
+                <div class="form-group">
+                  <label for="sender">Expéditeur</label>
+                  <input type="text" name="sender" id="sender" class="form-control input-sm" placeholder="" value = {{ old('sender')}}>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Objet</label>
+                    <textarea name="subject" id="subject" rows="2" class="form-control input-sm" placeholder="" value = {{ old('subject')}}></textarea>
+                </div>
+                <div class="form-row">
+
+                    <div class="form-group col">
+                        <label for="num_bjd">N° BJD</label>
+                        <input type="text" name="num_bjd" id="num_bjd" class="form-control input-lg" placeholder="" value = {{ old('num_bjd')}}>
+                    </div>
+                    <div class="form-group col">
+                        <label for="date_bjd">Date BJD</label>
+                        <input type="date" name="date_bjd" id="date_bjd" class="form-control input-sm" placeholder="" value = {{ old('date_bjd')}}>
+                        <small id="helpId" class="text-muted">aaaa-mm-jj</small>
+                    </div>
+                    
+                </div>
+                <div class="form-group">
+                    <label for="section">Section</label>
+                    <select class="custom-select" id="section" name="section" value = {{ old('section')}}>
+                        @if (old('section') == "divers")
+                            <option value="divers" selected>Divers</option>
+                            <option value="expropriation">Expropriation</option>
+                            <option value="domanial">Domanial</option>
+                            <option value="contentieux">Contentieux</option>
+                        @elseif(old('section') == "expropriation")
+                            <option value="divers">Divers</option>
+                            <option value="expropriation" selected>Expropriation</option>
+                            <option value="domanial">Domanial</option>
+                            <option value="contentieux">Contentieux</option>
+                        @elseif(old('section') == "domanial")
+                            <option value="divers">Divers</option>
+                            <option value="expropriation">Expropriation</option>
+                            <option value="domanial" selected>Domanial</option>
+                            <option value="contentieux">Contentieux</option>
+                        @elseif(old('section') == "contentieux")
+                            <option value="divers">Divers</option>
+                            <option value="expropriation">Expropriation</option>
+                            <option value="domanial">Domanial</option>
+                            <option value="contentieux" selected>Contentieux</option>
+                        @else
+                            <option value="divers">Divers</option>
+                            <option value="expropriation">Expropriation</option>
+                            <option value="domanial">Domanial</option>
+                            <option value="contentieux">Contentieux</option>
+                        @endif
+                        
+                        
+                      </select>
+                  </div>
+                
+            </fieldset>
+            <fieldset class="m-1 border border-secondary p-1 rounded col">
+                <legend class="border border-secondary text-center rounded">SAF</legend>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label for="">N° SAF</label>
+                        <input type="text" name="" id="" class="form-control input-sm" placeholder="">
+                    </div>
+                    <div class="form-group col">
+                        <label for="">Date SAF</label>
+                        <input type="text" name="" id="" class="form-control input-sm" placeholder="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="">Observation</label>
+                    <textarea name="" id="" rows="2" class="form-control input-sm" placeholder=""></textarea>
+                </div>
+                
+            </fieldset>
+            <fieldset class="m-1 border border-secondary p-1 rounded col">
+                <legend class="border border-secondary text-center rounded">Direction</legend>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label for="">N° Direction</label>
+                        <input type="text" name="" id="" class="form-control input-sm" placeholder="">
+                    </div>
+                    <div class="form-group col">
+                        <label for="">Date Direction</label>
+                        <input type="text" name="" id="" class="form-control input-sm" placeholder="">
+                    </div>
+                </div>
+            </fieldset>
+            <button class="btn btn-primary btn-lg btn-block my-3" type="submit">ajouter</button>
+        </form>
     </div>
+
+
+
+
+
+
 
 @endsection

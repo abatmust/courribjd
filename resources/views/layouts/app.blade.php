@@ -73,6 +73,8 @@
                 </div>
             </div>
         </nav>
+        @auth
+            
         <ul class="nav justify-content-center">
             <li class="nav-item">
                 <a class="nav-link active" href="{{route('users.index')}}">users</a>     
@@ -87,6 +89,7 @@
                 <a class="nav-link active" href="{{route('roles.index')}}">gérer les rôles</a>
             </li>
         </ul>
+        @endauth
 
         <main class="py-4">
             @yield('content')
