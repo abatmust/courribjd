@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateMailRequest;
 use App\models\Mail;
+use App\models\Saf_arrived;
 use Illuminate\Http\Request;
 
 class MailController extends Controller
@@ -18,7 +19,8 @@ class MailController extends Controller
      */
     public function index()
     {
-        $mails = Mail::with('users')->get();
+        $mails = Mail::with(['users', 'saf_arrived'])->get();
+        //dd($mails);
         return view('mails.index', ['mails' => $mails]);
     }
 
@@ -41,8 +43,13 @@ class MailController extends Controller
     public function store(CreateMailRequest $request)
     {
         
+       
       
-        Mail::create($request->only(['sender','subject', 'num_bjd', 'date_bjd', 'section']));
+        $mail = Mail::create($request->only(['sender','subject', 'num_bjd', 'date_bjd', 'section']));
+        $saf_arrived = new Saf_arrived($request->only(['num_saf', 'date_saf', 'observation']));
+        if($mail && (!empty($request->input('num_saf')) || !empty($request->input('date_saf')) || !empty($request->input('observation')))){
+            $mail->saf_arrived()->save($saf_arrived);
+        }
         return redirect(route('mails.index'));
     }
 

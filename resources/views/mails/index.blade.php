@@ -11,6 +11,7 @@
                         <th>SENDER</th>
                         <th>SUBJECT</th>
                         <th>AFFECTED TO</th>
+                        <th>SAF</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,6 +26,23 @@
                             @empty
                             <span class="badge badge-warning">not yet affected</span>
                             @endforelse
+                        </td>
+                        <td>
+                            @if ($mail->saf_arrived['num_saf'])
+                                <div class="badge badge-primary">
+                                    {{ "n°: ". $mail->saf_arrived['num_saf']  }}
+                                </div>
+                            @endif
+                            @if ($mail->saf_arrived['date_saf'])
+                                <div class="badge badge-secondary">
+                                    {{ " du " . $mail->saf_arrived->date_saf }}
+                                </div>
+                            @endif
+                            
+                            <div class="badge badge-info">
+                                {{ $mail->saf_arrived['observation'] }}
+                            </div>
+                            
                         </td>
                     </tr>
                     @empty

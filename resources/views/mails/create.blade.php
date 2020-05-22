@@ -72,17 +72,17 @@
                 <legend class="border border-secondary text-center rounded">SAF</legend>
                 <div class="form-row">
                     <div class="form-group col">
-                        <label for="">N° SAF</label>
-                        <input type="text" name="" id="" class="form-control input-sm" placeholder="">
+                        <label for="num_saf">N° SAF</label>
+                        <input type="text" name="num_saf" id="num_saf" class="form-control input-sm" placeholder="">
                     </div>
                     <div class="form-group col">
-                        <label for="">Date SAF</label>
-                        <input type="text" name="" id="" class="form-control input-sm" placeholder="">
+                        <label for="date_saf">Date SAF</label>
+                        <input type="date" name="date_saf" id="date_saf" class="form-control input-sm" placeholder="">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="">Observation</label>
-                    <textarea name="" id="" rows="2" class="form-control input-sm" placeholder=""></textarea>
+                    <label for="observation">Observation</label>
+                    <textarea name="observation" id="observation" rows="2" class="form-control input-sm" placeholder=""></textarea>
                 </div>
                 
             </fieldset>
