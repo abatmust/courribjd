@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\models\Role;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -18,7 +20,8 @@ class UserController extends Controller
     public function index()
     {
         $users = User::with('roles')->get();
-        return view('users.index', ['users' => $users]);
+        $roles = Role::select('id', 'role')->get();
+        return view('users.index', ['users' => $users, 'roles' => $roles]);
     }
 
     /**
