@@ -9,14 +9,14 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>SENDER</th>
-                        <th>SUBJECT</th>
-                        <th>AFFECTED TO</th>
+                        <th>EXPEDITEUR</th>
+                        <th>OBJET</th>
+                        <th>AFFECTE A</th>
                         <th>SECTION</th>
-                        <th>BJD</th>
-                        <th>SAF</th>
-                        <th>DIR</th>
-                        <th>Opérations</th>
+                        <th>REF BJD</th>
+                        <th>REF SAF</th>
+                        <th>REF DIR</th>
+                        <th>OPERATIONS</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -99,9 +99,10 @@
                             
                         </td>
                         <td>
-                        <form action="{{ route('mails.edit', ['mail' => $mail->id]) }}" method="GET">
-                                <button type="submit" class="btn btn-primary btn-sm">modifier</button>
+                            <form action="{{ route('mails.edit', ['mail' => $mail->id]) }}" method="GET">
+                                <button type="submit" class="btn btn-primary btn-sm btn-block mb-2">modifier</button>
                             </form>
+                            <a href="{{route('mails.show', ['mail' => $mail->id])}}" class="btn btn-info btn-sm btn-block">Détail</a>
                         </td>
                     </tr>
                     @empty
