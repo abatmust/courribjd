@@ -1,5 +1,6 @@
 <?php
 
+use App\models\Image;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,3 +27,9 @@ Route::resource('mail-user', 'MailUserController')->only(['store']);
 Route::resource('users', 'UserController')->only(['index', 'show']);
 Route::resource('mails', 'MailController')->only(['index', 'create', 'store', 'edit', 'update', 'show']);
 Route::resource('roles', 'RoleController')->only(['index','store']);
+Route::resource('images', 'ImageController')->only(['index','store']);
+
+Route::get('/pdf/{id}',function($id){
+    $image = Image::find($id);
+    return response()->file($image->path);
+});

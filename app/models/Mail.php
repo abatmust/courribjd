@@ -22,4 +22,7 @@ class Mail extends Model
     public function scopeLatest(Builder $query){
         $query->orderBy('id', 'desc');
     }
+    public function images(){
+        return $this->hasMany(Image::class);
+    }
 }
