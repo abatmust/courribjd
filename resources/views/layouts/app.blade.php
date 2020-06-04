@@ -27,6 +27,54 @@
                 <a class="navbar-brand text-white" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
+                @auth
+                    
+                
+
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" id="navId">
+                    
+                    {{-- <li class="nav-item">
+                      
+                    </li> --}}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Utilisateurs</a>
+                        <div class="dropdown-menu">
+                            <a href="{{route('users.index')}}" class="nav-link active">Utilisateurs</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="nav-link active" href="{{route('roles.index')}}">gérer les rôles</a>
+                            <div class="dropdown-divider"></div>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Courrier</a>
+                        <div class="dropdown-menu">
+                            <a href="{{route('mails.index')}}" class="nav-link active">liste du courrier</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="nav-link active" href="{{route('mails.create')}}">nouveau courrier</a>
+                            <div class="dropdown-divider"></div>
+                        </div>
+                    </li>
+                    
+                </ul>
+                
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="tab1Id" role="tabpanel"></div>
+                    <div class="tab-pane fade" id="tab2Id" role="tabpanel"></div>
+                    <div class="tab-pane fade" id="tab3Id" role="tabpanel"></div>
+                    <div class="tab-pane fade" id="tab4Id" role="tabpanel"></div>
+                    <div class="tab-pane fade" id="tab5Id" role="tabpanel"></div>
+                </div>
+                
+                <script>
+                    $('#navId a').click(e => {
+                        e.preventDefault();
+                        $(this).tab('show');
+                    });
+                </script>
+                @endauth
+
                 <button class="navbar-toggler text-white" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -75,20 +123,7 @@
         </nav>
         @auth
             
-        <ul class="nav justify-content-center">
-            <li class="nav-item">
-                <a class="nav-link active" href="{{route('users.index')}}">users</a>     
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="{{route('mails.index')}}">mails</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="{{route('mails.create')}}">nouveau courrier</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="{{route('roles.index')}}">gérer les rôles</a>
-            </li>
-        </ul>
+        
         @endauth
 
         <main class="py-4">

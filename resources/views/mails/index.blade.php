@@ -15,7 +15,6 @@
                         <th>SECTION</th>
                         <th>REF BJD</th>
                         <th>REF SAF</th>
-                        <th>REF DIR</th>
                         <th>OPERATIONS</th>
                     </tr>
                 </thead>
@@ -54,14 +53,10 @@
                             {{$mail->section}}
                         </td>
                         <td>
-                            @if ( $mail && $mail->num_bjd )
-                                <div class="badge badge-primary">
-                                    {{ "n°: ". $mail->num_bjd  }}
-                                </div>
-                            @endif
+                            
                             @if ( $mail && $mail->date_bjd )
                                 <div class="badge badge-secondary">
-                                    {{ " du " . $mail->date_bjd }}
+                                    {{ " Reçu le:" . date('d/m/Y', strtotime($mail->date_bjd)) }}
                                 </div>
                             @endif
                         </td>
@@ -83,24 +78,15 @@
                             </div>
                             
                         </td>
-                        <td>
-                            @if ($mail->dir_arrived['num_dir'])
-                                <div class="badge badge-primary">
-                                    {{ "n°: ". $mail->dir_arrived['num_dir']  }}
-                                </div>
-                            @endif
-                            @if ($mail->dir_arrived['date_dir'])
-                                <div class="badge badge-secondary">
-                                    {{ " du " . $mail->dir_arrived->date_dir }}
-                                </div>
-                            @endif
-                            
-                           
-                            
-                        </td>
+                        
                         <td>
                             <form action="{{ route('mails.edit', ['mail' => $mail->id]) }}" method="GET">
                                 <button type="submit" class="btn btn-primary btn-sm btn-block mb-2">modifier</button>
+                            </form>
+                            <form action="{{ route('mails.destroy', ['mail' => $mail->id]) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm btn-block mb-2">Supprimer</button>
                             </form>
                             <a href="{{route('mails.show', ['mail' => $mail->id])}}" class="btn btn-info btn-sm btn-block">Détail</a>
                         </td>

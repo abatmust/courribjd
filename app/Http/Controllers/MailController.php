@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateMailRequest;
-use App\models\Dir_arrived;
 use App\models\Mail;
 use App\models\Saf_arrived;
 use App\User;
@@ -47,14 +46,10 @@ class MailController extends Controller
      */
     public function store(CreateMailRequest $request)
     {
-        $mail = Mail::create($request->only(['sender','subject', 'num_bjd', 'date_bjd', 'section']));
+        $mail = Mail::create($request->only(['sender','subject', 'date_bjd', 'section']));
         $saf_arrived = new Saf_arrived($request->only(['num_saf', 'date_saf', 'observation']));
         if($mail && (!empty($request->input('num_saf')) || !empty($request->input('date_saf')) || !empty($request->input('observation')))){
             $mail->saf_arrived()->save($saf_arrived);
-        }
-        $dir_arrived = new Dir_arrived($request->only(['num_dir', 'date_dir']));
-        if($mail && (!empty($request->input('num_dir')) || !empty($request->input('date_dir')))){
-            $mail->dir_arrived()->save($dir_arrived);
         }
 
         return redirect(route('mails.index'));
@@ -94,7 +89,7 @@ class MailController extends Controller
     {
 
         $mail = Mail::findOrFail($id);
-        $mailUpdated = $mail->update($request->only(['sender','subject', 'num_bjd', 'date_bjd', 'section']));
+        $mailUpdated = $mail->update($request->only(['sender','subject', 'date_bjd', 'section']));
         if($mail && $mail->saf_arrived)
         {
             $mail->saf_arrived->update($request->only(['num_saf', 'date_saf', 'observation']));
@@ -108,11 +103,7 @@ class MailController extends Controller
         {
             $mail->dir_arrived()->update($request->only(['num_dir', 'date_dir']));
         }
-        elseif($mail && (!empty($request->input('num_dir')) || !empty($request->input('date_dir')))){
-           
-            $dir_arrived = new Dir_arrived($request->only(['num_dir', 'date_dir']));
-            $mail->dir_arrived()->save($dir_arrived);
-        }
+        
 
         return redirect(route('mails.index'));
     }
@@ -125,6 +116,8 @@ class MailController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $mail = Mail::find($id);
+        $mail->delete();
+        return back();
     }
 }

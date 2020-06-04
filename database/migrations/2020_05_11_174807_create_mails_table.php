@@ -18,7 +18,6 @@ class CreateMailsTable extends Migration
             $table->id();
             $table->string('sender');
             $table->text('subject');
-            $table->mediumInteger('num_bjd')->nullable()->default(null);
             $table->date('date_bjd')->nullable()->default(null);
             $table->string('section',15)->nullable()->default(null);
             $table->timestamps();

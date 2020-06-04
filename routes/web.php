@@ -25,7 +25,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('role-user', 'RoleUserController')->only(['store']);
 Route::resource('mail-user', 'MailUserController')->only(['store']);
 Route::resource('users', 'UserController')->only(['index', 'show']);
-Route::resource('mails', 'MailController')->only(['index', 'create', 'store', 'edit', 'update', 'show']);
+Route::resource('mails', 'MailController');
 Route::resource('roles', 'RoleController')->only(['index','store']);
 Route::resource('images', 'ImageController')->only(['index','store']);
 

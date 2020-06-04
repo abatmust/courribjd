@@ -3,15 +3,15 @@
 @section('content')
 
 <div class="container">
-    <div class="p-1 row">
+    <div class="p-1">
 
         <x-errors></x-errors>
 
-        <h3 class="col-12">ajouter un nouveau courrier</h3>
+        <h3 class="col-12">modifier courrier</h3>
         <form action="{{ route('mails.update', ['mail' => $mail->id]) }}" method="POST" class="row">
             @csrf
             @method('PUT')
-            <fieldset class="m-1 border border-secondary p-1 rounded col">
+            <fieldset class="m-1 border border-secondary p-1 rounded col-5">
                 <legend class="border border-secondary text-center rounded">BJD</legend>
                 <div class="form-group">
                   <label for="sender">Expéditeur</label>
@@ -23,10 +23,7 @@
                 </div>
                 <div class="form-row">
 
-                    <div class="form-group col">
-                        <label for="num_bjd">N° BJD</label>
-                        <input type="text" name="num_bjd" id="num_bjd" class="form-control input-lg" placeholder="" value = {{ old('num_bjd', $mail->num_bjd ?? null) }}>
-                    </div>
+                    
                     <div class="form-group col">
                         <label for="date_bjd">Date BJD</label>
                         <input type="date" name="date_bjd" id="date_bjd" class="form-control input-sm" placeholder="" value = {{ old('date_bjd', $mail->date_bjd ?? null) }}>
@@ -69,7 +66,7 @@
                   </div>
                 
             </fieldset>
-            <fieldset class="m-1 border border-secondary p-1 rounded col">
+            <fieldset class="m-1 border border-secondary p-1 rounded col-5">
                 <legend class="border border-secondary text-center rounded">SAF</legend>
                 <div class="form-row">
                     <div class="form-group col">
@@ -87,20 +84,10 @@
                 </div>
                 
             </fieldset>
-            <fieldset class="m-1 border border-secondary p-1 rounded col">
-                <legend class="border border-secondary text-center rounded">Direction</legend>
-                <div class="form-row">
-                    <div class="form-group col">
-                        <label for="num_dir">N° Direction</label>
-                        <input type="text" name="num_dir" id="num_dir" class="form-control input-sm" placeholder="" value = {{ old('num_dir', $mail->dir_arrived->num_dir ?? null) }}>
-                    </div>
-                    <div class="form-group col">
-                        <label for="date_dir">Date Direction</label>
-                        <input type="date" name="date_dir" id="date_dir" class="form-control input-sm" placeholder="" value = {{ old('date_dir', $mail->dir_arrived->date_dir ?? null) }}>
-                    </div>
-                </div>
-            </fieldset>
-            <button class="btn btn-primary btn-lg btn-block my-3" type="submit">modifier</button>
+            <div class="col-10 row">
+
+                <button class="btn btn-primary btn-lg btn-block my-3 mx-auto col-10" type="submit">modifier</button>
+            </div>
         </form>
     </div>
 

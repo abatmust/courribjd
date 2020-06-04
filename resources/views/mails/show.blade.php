@@ -17,14 +17,11 @@
                     <b style="margin-left:1em">{{$mail->subject}}</b>
                 </div>
                 <div class="col-3">
-                    N° BJD:
-                   <b style="margin-left:1em">{{$mail->num_bjd}}</b>
+                    Date BJD:
+                   <b style="margin-left:1em">{{date('d/m/Y', strtotime($mail->saf_arrived->date_saf))}}</b>
                 </div>
             
-                <div class="col-4">
-                    DATE BJD:
-                    <b style="margin-left:1em">{{date('d/m/Y', strtotime($mail->date_bjd))}}</b>
-                </div>
+                
                 <div class="col-5">
                     SECTION:
                     <b style="margin-left:1em">{{$mail->section}}</b>
@@ -44,16 +41,7 @@
                     <b style="margin-left:1em">{{$mail->saf_arrived->observation}}</b>
                 </div>
             </div>
-            <div class="row border border-primary rounded p-3 mb-3">
-                <div class="col-3">
-                    N° DIR:
-                    <b style="margin-left:1em">{{$mail->dir_arrived->num_dir}}</b>
-                </div>
-                <div class="col-4">
-                    DATE DIR:
-                    <b style="margin-left:1em">{{date('d/m/Y', strtotime($mail->dir_arrived->date_dir))}}</b>
-                </div>
-            </div>
+            
             <div class="row border border-primary rounded p-3 mb-3">
                 <div class="col">
                     <form action="{{ route('mails.edit', ['mail' => $mail->id]) }}" method="GET">
@@ -93,7 +81,7 @@
                 <h3>liste des pièces Pdf</h3>
                 <ul class="list-group">
                     @forelse ($mail->images as $image)
-                <li class="list-item"><a href="{{$image->url()}}"><span class="badge badge-warning"><b>Pièce pdf : {{$loop->iteration}}</b></span> </a></li>
+                <li class="list-item"><a href="{{$image->url()}}" target="_blank"><span class="badge badge-warning"><b>Pièce pdf : {{$loop->iteration}}</b></span> </a></li>
                     @empty
                         <span class="badge badge-danger">aucune pièce</span>
                     @endforelse

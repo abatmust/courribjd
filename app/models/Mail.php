@@ -16,9 +16,6 @@ class Mail extends Model
     public function saf_arrived(){
         return $this->hasOne(Saf_arrived::class);
     }
-    public function dir_arrived(){
-        return $this->hasOne(Dir_arrived::class);
-    }
     public function scopeLatest(Builder $query){
         $query->orderBy('id', 'desc');
     }
