@@ -82,6 +82,7 @@
                 <ul class="list-group">
                     @forelse ($mail->images as $image)
                 <li class="list-item"><a href="{{$image->url()}}" target="_blank"><span class="badge badge-warning"><b>Pièce pdf : {{$loop->iteration}}</b></span> </a></li>
+                {{-- <embed src="{{$image->url()}}" type="application/pdf" witdh="100%" height="100%"> --}}
                     @empty
                         <span class="badge badge-danger">aucune pièce</span>
                     @endforelse

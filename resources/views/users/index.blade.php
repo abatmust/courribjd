@@ -28,22 +28,22 @@
                     @empty
                     <spane class="badge badge-warning">no roles</spane>
                     @endforelse
-                    @if (in_array('admin', Auth::user()->roles->pluck('role')->toArray()))
+                    @can('is_admin')
                     <form action="{{route('role-user.store', ['user' => $user->id])}}" method="POST">
                         @csrf
-                        <div class="input-group">
+                        <div class="input-group w-50">
                             <select name="roleas" id="roleas" class="custom-select custom-select-sm">
                                 @foreach ($roles as $role)
                                     <option value="{{$role->id}}">{{$role->role}}</option>
                                 @endforeach
                             </select>
                             <div class="input-group-append">
-                                <button class="btn btn-sm btn-outline-success">attacher</button>
+                                <button class="btn btn-sm btn-outline-success">Basculer</button>
                             </div>
 
                         </div>
                     </form>
-                    @endif
+                    @endcan
                 </td>
             </tr>
             @endforeach

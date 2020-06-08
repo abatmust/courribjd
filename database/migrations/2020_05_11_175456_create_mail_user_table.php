@@ -14,8 +14,12 @@ class CreateMailUserTable extends Migration
     public function up()
     {
         Schema::create('mail_user', function (Blueprint $table) {
-            $table->foreignId('mail_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('mail_id')
+                  ->constrained()
+                  ->onDelete('cascade');
+            $table->foreignId('user_id')
+                  ->constrained()
+                  ->onDelete('cascade');
             $table->timestamps();
         });
     }

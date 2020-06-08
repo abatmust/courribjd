@@ -37,6 +37,7 @@
                     {{-- <li class="nav-item">
                       
                     </li> --}}
+                    @can('is_admin')
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Utilisateurs</a>
                         <div class="dropdown-menu">
@@ -46,6 +47,7 @@
                             <div class="dropdown-divider"></div>
                         </div>
                     </li>
+                    @endcan
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Courrier</a>
                         <div class="dropdown-menu">
@@ -53,6 +55,13 @@
                             <div class="dropdown-divider"></div>
                             <a class="nav-link active" href="{{route('mails.create')}}">nouveau courrier</a>
                             <div class="dropdown-divider"></div>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Copie PDF</a>
+                        <div class="dropdown-menu">
+                            <a href="{{route('images.index')}}" class="nav-link active">liste des copies pdf</a>
+                            
                         </div>
                     </li>
                     

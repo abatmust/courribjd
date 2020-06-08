@@ -16,7 +16,9 @@ class ImageController extends Controller
      */
     public function index()
     {
-        //
+        $allFiles = Storage::files('mailPdf');
+        return view('images.index', ['files' => $allFiles]);
+        //dd(Storage::files('mailPdf'));
     }
 
     /**

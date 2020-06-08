@@ -31,7 +31,7 @@
                             @empty
                             <span class="badge badge-warning">not yet affected</span>
                             @endforelse
-                            @if (in_array('chef', Auth::user()->roles->pluck('role')->toArray()))
+                            @can('is_chef')
                                 <form action="{{route('mail-user.store', ['mail' => $mail->id])}}" method="POST">
                                     @csrf
                                     <div class="input-group">
@@ -41,12 +41,12 @@
                                             @endforeach
                                         </select>
                                         <div class="input-group-append">
-                                            <button class="btn btn-sm btn-outline-success">attacher</button>
+                                            <button class="btn btn-sm btn-outline-success">Basculer</button>
                                         </div>
 
                                     </div>
                                 </form>
-                            @endif
+                            @endcan
 
                         </td>
                         <td>

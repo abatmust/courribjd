@@ -9,6 +9,7 @@ class RoleUserController extends Controller
 {
    public function store(Request $request){
         $user = User::findOrFail($request->input('user'));
+        $this->authorize('is_admin');
         $user->roles()->toggle([$request->input('roleas')]);
         return redirect()->back();
     }
