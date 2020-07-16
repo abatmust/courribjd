@@ -39,28 +39,39 @@
                             <option value="expropriation">Expropriation</option>
                             <option value="domanial">Domanial</option>
                             <option value="contentieux">Contentieux</option>
+                            <option value="decisions-notes">Décisions et notes</option>
                         @elseif(old('section') == "expropriation" || $mail->section == "expropriation")
                             <option value="divers">Divers</option>
                             <option value="expropriation" selected>Expropriation</option>
                             <option value="domanial">Domanial</option>
                             <option value="contentieux">Contentieux</option>
+                            <option value="decisions-notes">Décisions et notes</option>
                         @elseif(old('section') == "domanial" || $mail->section == "domanial")
                             <option value="divers">Divers</option>
                             <option value="expropriation">Expropriation</option>
                             <option value="domanial" selected>Domanial</option>
                             <option value="contentieux">Contentieux</option>
+                            <option value="decisions-notes">Décisions et notes</option>
                         @elseif(old('section') == "contentieux" || $mail->section == "contentieux")
                             <option value="divers">Divers</option>
                             <option value="expropriation">Expropriation</option>
                             <option value="domanial">Domanial</option>
                             <option value="contentieux" selected>Contentieux</option>
+                            <option value="decisions-notes">Décisions et notes</option>
+                        @elseif(old('section') == "decisions-notes" || $mail->section == "decisions-notes")
+                              <option value="divers">Divers</option>
+                            <option value="expropriation">Expropriation</option>
+                            <option value="domanial">Domanial</option>
+                            <option value="contentieux">Contentieux</option>
+                            <option value="decisions-notes" selected>Décisions et notes</option>
                         @else
                             <option value="divers">Divers</option>
                             <option value="expropriation">Expropriation</option>
                             <option value="domanial">Domanial</option>
                             <option value="contentieux">Contentieux</option>
+                            <option value="decisions-notes">Décisions et notes</option>
                         @endif
-                        
+                      
                         
                       </select>
                   </div>

@@ -19,6 +19,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/cerulean.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/mycss.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -57,6 +58,7 @@
                             <div class="dropdown-divider"></div>
                         </div>
                     </li>
+                    @can('is_admin')
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Copie PDF</a>
                         <div class="dropdown-menu">
@@ -64,6 +66,7 @@
                             
                         </div>
                     </li>
+                    @endcan
                     
                 </ul>
                 
@@ -76,12 +79,12 @@
                     <div class="tab-pane fade" id="tab5Id" role="tabpanel"></div>
                 </div>
                 
-                <script>
-                    $('#navId a').click(e => {
-                        e.preventDefault();
-                        $(this).tab('show');
-                    });
-                </script>
+                {{-- <script>
+                    // $('#navId a').click(e => {
+                    //     e.preventDefault();
+                    //     $(this).tab('show');
+                    // });
+                </script> --}}
                 @endauth
 
                 <button class="navbar-toggler text-white" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

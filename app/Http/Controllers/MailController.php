@@ -7,6 +7,7 @@ use App\models\Mail;
 use App\models\Saf_arrived;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MailController extends Controller
 {
@@ -20,7 +21,8 @@ class MailController extends Controller
      */
     public function index()
     {
-        $mails = Mail::with(['users', 'saf_arrived'])->latest()->get();
+        //dd(Auth::user()->roles);
+        $mails = Mail::with(['users', 'saf_arrived'])->latest()->paginate(10);
         $users = User::select('id', 'name')->get();
 
 
@@ -99,10 +101,7 @@ class MailController extends Controller
             $mail->saf_arrived()->save($saf_arrived);
         }
 
-        if($mail && $mail->dir_arrived)
-        {
-            $mail->dir_arrived()->update($request->only(['num_dir', 'date_dir']));
-        }
+        
         
 
         return redirect(route('mails.index'));

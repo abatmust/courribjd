@@ -14,15 +14,15 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    <h3 dir="rtl" class="text-right">مرحبا بكم ...</h3>
                     
-                    <nav class="nav justify-content-center">
+                    {{-- <nav class="nav justify-content-center">
                       <a class="nav-link active" href="{{route('users.index')}}">users</a>
                       <a class="nav-link active" href="{{route('mails.index')}}">mails</a>
                       <a class="nav-link active" href="{{route('mails.create')}}">nouveau courrier</a>
                       <a class="nav-link" href="#">Link</a>
                       <a class="nav-link disabled" href="#">Disabled link</a>
-                    </nav>
+                    </nav> --}}
 
                 </div>
             </div>

@@ -8,21 +8,18 @@
     <div class="row">
         <div class="col-8 p-3">
             <div class="row border border-primary rounded p-3 mb-3">
-                <div class="col-6">
+                <div class="col-12">
                     EXPEDITEUR:
                     <b style="margin-left:1em">{{$mail->sender}}</b>
                 </div>
-                <div class="col-6">
+                <div class="col-8">
                     OBJET:
                     <b style="margin-left:1em">{{$mail->subject}}</b>
                 </div>
-                <div class="col-3">
-                    Date BJD:
-                   <b style="margin-left:1em">{{date('d/m/Y', strtotime($mail->saf_arrived->date_saf))}}</b>
-                </div>
+                
             
                 
-                <div class="col-5">
+                <div class="col-4">
                     SECTION:
                     <b style="margin-left:1em">{{$mail->section}}</b>
                 </div>
@@ -30,15 +27,21 @@
             <div class="row border border-primary rounded p-3 mb-3">
                 <div class="col-3">
                     N° SAF:
-                    <b style="margin-left:1em">{{$mail->saf_arrived->num_saf}}</b>
+                    @if($mail->saf_arrived && $mail->saf_arrived->num_saf)
+                        <b style="margin-left:1em">{{$mail->saf_arrived->num_saf}}</b>
+                    @endif
                 </div>
                 <div class="col-4">
                     DATE SAF:
-                    <b style="margin-left:1em">{{date('d/m/Y', strtotime($mail->saf_arrived->date_saf))}}</b>
+                    @if($mail->saf_arrived && $mail->saf_arrived->date_saf)
+                        <b style="margin-left:1em">{{date('d/m/Y', strtotime($mail->saf_arrived->date_saf))}}</b>
+                    @endif
                 </div>
                 <div class="col-5">
                     OBSERVATION SAF:
-                    <b style="margin-left:1em">{{$mail->saf_arrived->observation}}</b>
+                    @if($mail->saf_arrived && $mail->saf_arrived->observation)
+                        <b style="margin-left:1em">{{$mail->saf_arrived->observation}}</b>
+                    @endif
                 </div>
             </div>
             

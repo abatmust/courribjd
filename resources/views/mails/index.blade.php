@@ -15,7 +15,7 @@
                         <th>SECTION</th>
                         <th>REF BJD</th>
                         <th>REF SAF</th>
-                        <th>OPERATIONS</th>
+                        <th class="d-print-none">OPERATIONS</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,13 +29,15 @@
                             @forelse ($mail->users as $user)
                                 <span class="badge badge-info">{{$user->name}}</span>
                             @empty
-                            <span class="badge badge-warning">not yet affected</span>
+                            <span class="badge badge-warning"> . . . </span>
                             @endforelse
-                            @can('is_chef')
+                            @can('is_os')
+                            <div class="d-print-none">
                                 <form action="{{route('mail-user.store', ['mail' => $mail->id])}}" method="POST">
                                     @csrf
                                     <div class="input-group">
                                         <select name="assignto" id="assignto" class="custom-select custom-select-sm">
+                                                <option value="">Choisir</option>
                                             @foreach ($users as $user)
                                                 <option value="{{$user->id}}">{{$user->name}}</option>
                                             @endforeach
@@ -46,6 +48,7 @@
 
                                     </div>
                                 </form>
+                            </div>
                             @endcan
 
                         </td>
@@ -80,6 +83,8 @@
                         </td>
                         
                         <td>
+                            <div class="d-print-none">
+                            @can('is_admin')
                             <form action="{{ route('mails.edit', ['mail' => $mail->id]) }}" method="GET">
                                 <button type="submit" class="btn btn-primary btn-sm btn-block mb-2">modifier</button>
                             </form>
@@ -88,7 +93,9 @@
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm btn-block mb-2">Supprimer</button>
                             </form>
+                            @endcan
                             <a href="{{route('mails.show', ['mail' => $mail->id])}}" class="btn btn-info btn-sm btn-block">Détail</a>
+                        </div>
                         </td>
                     </tr>
                     @empty
@@ -108,5 +115,6 @@
     
     
 </div>
+<div dir="rtl" class="container">{{$mails->links()}}</div>
     
 @endsection

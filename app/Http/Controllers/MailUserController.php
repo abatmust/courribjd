@@ -9,7 +9,7 @@ class MailUserController extends Controller
 {
     public function store(Request $request){
         $mail = Mail::findOrFail($request->input('mail'));
-        $this->authorize('is_chef');
+        $this->authorize('is_os');
         $mail->users()->toggle([$request->input('assignto')]);
         return redirect()->back();
     }
