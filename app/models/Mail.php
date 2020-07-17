@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Mail extends Model
 {
-    public $fillable = ['sender', 'subject', 'num_bjd', 'date_bjd', 'section'];
+    public $fillable = ['sender', 'subject', 'num_bjd', 'date_bjd', 'section', 'observation_bjd'];
     public function users(){
         return $this->belongsToMany(User::class);
     }

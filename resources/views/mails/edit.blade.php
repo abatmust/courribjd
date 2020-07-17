@@ -30,51 +30,55 @@
                         <small id="helpId" class="text-muted">aaaa-mm-jj</small>
                     </div>
                     
+                    <div class="form-group col">
+                        <label for="section">Section</label>
+                        <select class="custom-select" id="section" name="section" value = {{ old('section')}}>
+                            @if (old('section') == "divers" || $mail->section == "divers")
+                                <option value="divers" selected>Divers</option>
+                                <option value="expropriation">Expropriation</option>
+                                <option value="domanial">Domanial</option>
+                                <option value="contentieux">Contentieux</option>
+                                <option value="decisions-notes">Décisions et notes</option>
+                            @elseif(old('section') == "expropriation" || $mail->section == "expropriation")
+                                <option value="divers">Divers</option>
+                                <option value="expropriation" selected>Expropriation</option>
+                                <option value="domanial">Domanial</option>
+                                <option value="contentieux">Contentieux</option>
+                                <option value="decisions-notes">Décisions et notes</option>
+                            @elseif(old('section') == "domanial" || $mail->section == "domanial")
+                                <option value="divers">Divers</option>
+                                <option value="expropriation">Expropriation</option>
+                                <option value="domanial" selected>Domanial</option>
+                                <option value="contentieux">Contentieux</option>
+                                <option value="decisions-notes">Décisions et notes</option>
+                            @elseif(old('section') == "contentieux" || $mail->section == "contentieux")
+                                <option value="divers">Divers</option>
+                                <option value="expropriation">Expropriation</option>
+                                <option value="domanial">Domanial</option>
+                                <option value="contentieux" selected>Contentieux</option>
+                                <option value="decisions-notes">Décisions et notes</option>
+                            @elseif(old('section') == "decisions-notes" || $mail->section == "decisions-notes")
+                                  <option value="divers">Divers</option>
+                                <option value="expropriation">Expropriation</option>
+                                <option value="domanial">Domanial</option>
+                                <option value="contentieux">Contentieux</option>
+                                <option value="decisions-notes" selected>Décisions et notes</option>
+                            @else
+                                <option value="divers">Divers</option>
+                                <option value="expropriation">Expropriation</option>
+                                <option value="domanial">Domanial</option>
+                                <option value="contentieux">Contentieux</option>
+                                <option value="decisions-notes">Décisions et notes</option>
+                            @endif
+                          
+                            
+                          </select>
+                      </div>
                 </div>
-                <div class="form-group">
-                    <label for="section">Section</label>
-                    <select class="custom-select" id="section" name="section" value = {{ old('section')}}>
-                        @if (old('section') == "divers" || $mail->section == "divers")
-                            <option value="divers" selected>Divers</option>
-                            <option value="expropriation">Expropriation</option>
-                            <option value="domanial">Domanial</option>
-                            <option value="contentieux">Contentieux</option>
-                            <option value="decisions-notes">Décisions et notes</option>
-                        @elseif(old('section') == "expropriation" || $mail->section == "expropriation")
-                            <option value="divers">Divers</option>
-                            <option value="expropriation" selected>Expropriation</option>
-                            <option value="domanial">Domanial</option>
-                            <option value="contentieux">Contentieux</option>
-                            <option value="decisions-notes">Décisions et notes</option>
-                        @elseif(old('section') == "domanial" || $mail->section == "domanial")
-                            <option value="divers">Divers</option>
-                            <option value="expropriation">Expropriation</option>
-                            <option value="domanial" selected>Domanial</option>
-                            <option value="contentieux">Contentieux</option>
-                            <option value="decisions-notes">Décisions et notes</option>
-                        @elseif(old('section') == "contentieux" || $mail->section == "contentieux")
-                            <option value="divers">Divers</option>
-                            <option value="expropriation">Expropriation</option>
-                            <option value="domanial">Domanial</option>
-                            <option value="contentieux" selected>Contentieux</option>
-                            <option value="decisions-notes">Décisions et notes</option>
-                        @elseif(old('section') == "decisions-notes" || $mail->section == "decisions-notes")
-                              <option value="divers">Divers</option>
-                            <option value="expropriation">Expropriation</option>
-                            <option value="domanial">Domanial</option>
-                            <option value="contentieux">Contentieux</option>
-                            <option value="decisions-notes" selected>Décisions et notes</option>
-                        @else
-                            <option value="divers">Divers</option>
-                            <option value="expropriation">Expropriation</option>
-                            <option value="domanial">Domanial</option>
-                            <option value="contentieux">Contentieux</option>
-                            <option value="decisions-notes">Décisions et notes</option>
-                        @endif
-                      
-                        
-                      </select>
-                  </div>
+                  <div class="form-group">
+                    <label for="observation_bjd">Observation</label>
+                    <textarea name="observation_bjd" id="observation_bjd" rows="2" class="form-control input-sm" placeholder="">{{ old('observation_bjd', $mail->observation_bjd ?? null) }}</textarea>
+                </div>
                 
             </fieldset>
             <fieldset class="m-1 border border-secondary p-1 rounded col-5">

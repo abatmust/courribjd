@@ -5,14 +5,19 @@
 .<div class="container">
     <div class="row">
         <div class="col">
-            <table class="table table-sm">
+            <input dir="rtl" id="myInput" type="text" placeholder="بحث ..." class="float-right form-control my-3 d-print-none" style="width:20%">
+            <table id="myTable" class="table table-sm">
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>EXPEDITEUR</th>
                         <th>OBJET</th>
+                       
+                        @cannot('is_agent')
                         <th>AFFECTE A</th>
+                        @endcannot
                         <th>SECTION</th>
+                        <th>BJD OBSERVATION</th>
                         <th>REF BJD</th>
                         <th>REF SAF</th>
                         <th class="d-print-none">OPERATIONS</th>
@@ -20,11 +25,12 @@
                 </thead>
                 <tbody>
                     @forelse ($mails as $mail)
-                    
-                    <tr>
+                    {{-- @can('seeMail', $mail) --}}
+                    <tr class="rowData">
                         <td scope="row">{{ $mail->id }}</td>
                         <td>{{ $mail->sender }}</td>
                         <td>{{ $mail->subject }}</td>
+                        @cannot('is_agent')
                         <td style='width: 18%'>
                             @forelse ($mail->users as $user)
                                 <span class="badge badge-info">{{$user->name}}</span>
@@ -36,7 +42,7 @@
                                 <form action="{{route('mail-user.store', ['mail' => $mail->id])}}" method="POST">
                                     @csrf
                                     <div class="input-group">
-                                        <select name="assignto" id="assignto" class="custom-select custom-select-sm">
+                                        <select name="assignto"  class="custom-select custom-select-sm">
                                                 <option value="">Choisir</option>
                                             @foreach ($users as $user)
                                                 <option value="{{$user->id}}">{{$user->name}}</option>
@@ -52,8 +58,12 @@
                             @endcan
 
                         </td>
+                        @endcannot
                         <td>
                             {{$mail->section}}
+                        </td>
+                        <td>
+                            {{$mail->observation_bjd ?? ''}}
                         </td>
                         <td>
                             
@@ -98,6 +108,7 @@
                         </div>
                         </td>
                     </tr>
+                    {{-- @endcan --}}
                     @empty
                     <tr>
                         <td colspan ="4"><h1 class="text-center">no mails in the database</h1></td>
@@ -115,6 +126,22 @@
     
     
 </div>
-<div dir="rtl" class="container">{{$mails->links()}}</div>
+
     
 @endsection
+@push('scripts')
+<script>
+    $(document).ready(function(){
+
+        
+        $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr.rowData").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+         });
+        
+       
+    });
+</script>
+@endpush

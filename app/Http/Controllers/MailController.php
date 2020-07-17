@@ -22,7 +22,16 @@ class MailController extends Controller
     public function index()
     {
         //dd(Auth::user()->roles);
-        $mails = Mail::with(['users', 'saf_arrived'])->latest()->paginate(10);
+        
+        if(in_array('agent',Auth::user()->roles()->pluck('role')->toArray())){
+            
+            $mails = Auth::user()->mails()->with(['users', 'saf_arrived'])->latest()->get();
+           
+        }else{
+            $mails = Mail::with(['users', 'saf_arrived'])->latest()->get();
+            
+        }
+        
         $users = User::select('id', 'name')->get();
 
 
@@ -91,7 +100,7 @@ class MailController extends Controller
     {
 
         $mail = Mail::findOrFail($id);
-        $mailUpdated = $mail->update($request->only(['sender','subject', 'date_bjd', 'section']));
+        $mailUpdated = $mail->update($request->only(['sender','subject', 'date_bjd', 'section', 'observation_bjd']));
         if($mail && $mail->saf_arrived)
         {
             $mail->saf_arrived->update($request->only(['num_saf', 'date_saf', 'observation']));
