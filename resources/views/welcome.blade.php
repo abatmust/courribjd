@@ -10,6 +10,9 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
         <!-- Styles -->
+        <link type="text/css" rel="stylesheet" href="{{ mix('css/app.css') }}">
+      
+        
         <style>
             html, body {
                 background-color: #fff;
@@ -61,6 +64,10 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+            i{
+            font-size: 50px !important;
+            padding: 10px;
+        }
         </style>
     </head>
     <body>
@@ -86,6 +93,9 @@
                 <div class="m-b-md">
                     <h3>BJD - SAF</h3>
                 </div>
+
+               
+              
 
                 {{-- <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>

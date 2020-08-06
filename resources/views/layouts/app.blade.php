@@ -17,13 +17,22 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="{{ mix('css/fa/fa.css') }}">
+    
 
     <!-- Styles -->
     <link href="{{ asset('css/cerulean.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/mycss.css') }}" rel="stylesheet">
+    <style type="text/css">
+        i{
+            font-size: 15px !important;
+            padding: 1px;
+        }
+    </style>
 </head>
 <body>
+    
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-primary shadow-sm">
             <div class="container">

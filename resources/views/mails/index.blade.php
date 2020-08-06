@@ -6,32 +6,33 @@
     <div class="row">
         <div class="col">
             <input dir="rtl" id="myInput" type="text" placeholder="بحث ..." class="float-right form-control my-3 d-print-none" style="width:20%">
-            <table id="myTable" class="table table-sm">
+           
+            <table id="myTable" class="table table-sm table-hover">
                 <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>EXPEDITEUR</th>
-                        <th>OBJET</th>
+                    <tr class="row">
+                        <th class="col-0.5">ID</th>
+                        <th class="col">EXPEDITEUR</th>
+                        <th class="col-2">OBJET</th>
                        
                         @cannot('is_agent')
-                        <th>AFFECTE A</th>
+                        <th class="col">AFFECTE A</th>
                         @endcannot
-                        <th>SECTION</th>
-                        <th>BJD OBSERVATION</th>
-                        <th>REF BJD</th>
-                        <th>REF SAF</th>
-                        <th class="d-print-none">OPERATIONS</th>
+                        <th class="col">SECTION</th>
+                        <th class="col-2">BJD OBSERVATION</th>
+                        <th class="col">REF BJD</th>
+                        <th class="col">REF SAF</th>
+                        <th class="d-print-none col">OPERATIONS</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse ($mails as $mail)
                     {{-- @can('seeMail', $mail) --}}
-                    <tr class="rowData">
-                        <td scope="row">{{ $mail->id }}</td>
-                        <td>{{ $mail->sender }}</td>
-                        <td>{{ $mail->subject }}</td>
+                    <tr class="rowData row">
+                        <td class="col-0.5" scope="row">{{ $mail->id }}</td>
+                        <td class="col wrap">{{ $mail->sender }}</td>
+                        <td class="col-2">{{ $mail->subject }}</td>
                         @cannot('is_agent')
-                        <td style='width: 18%'>
+                        <td class="col">
                             @forelse ($mail->users as $user)
                                 <span class="badge badge-info">{{$user->name}}</span>
                             @empty
@@ -59,13 +60,13 @@
 
                         </td>
                         @endcannot
-                        <td>
+                        <td class="col">
                             {{$mail->section}}
                         </td>
-                        <td>
+                        <td class="col-2">
                             {{$mail->observation_bjd ?? ''}}
                         </td>
-                        <td>
+                        <td class="col">
                             
                             @if ( $mail && $mail->date_bjd )
                                 <div class="badge badge-secondary">
@@ -74,7 +75,7 @@
                             @endif
                         </td>
                         
-                        <td>
+                        <td class="col">
                             @if ( $mail->saf_arrived && $mail->saf_arrived->num_saf )
                                 <div class="badge badge-primary">
                                     {{ "n°: ". $mail->saf_arrived->num_saf  }}
@@ -92,20 +93,22 @@
                             
                         </td>
                         
-                        <td>
+                        <td class="col">
                             <div class="d-print-none">
                             @can('is_admin')
-                            <form action="{{ route('mails.edit', ['mail' => $mail->id]) }}" method="GET">
-                                <button type="submit" class="btn btn-primary btn-sm btn-block mb-2">modifier</button>
+                            <form class="d-inline" action="{{ route('mails.edit', ['mail' => $mail->id]) }}" method="GET">
+                                <button type="submit" class="btn btn-primary btn-sm d-inline"><i class="fa fa-edit"></i></button>
                             </form>
-                            <form action="{{ route('mails.destroy', ['mail' => $mail->id]) }}" method="POST">
+                            <form class="d-inline" action="{{ route('mails.destroy', ['mail' => $mail->id]) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm btn-block mb-2">Supprimer</button>
+                                <button type="submit" class="btn btn-danger btn-sm d-inline delete_btn"><i class="fa fa-trash"></i></button>
                             </form>
                             @endcan
-                            <a href="{{route('mails.show', ['mail' => $mail->id])}}" class="btn btn-info btn-sm btn-block">Détail</a>
+                            
+                            <a href="{{route('mails.show', ['mail' => $mail->id])}}" class="btn btn-warning btn-sm"><i class="fa fa-search-plus"></i></a>
                         </div>
+                       
                         </td>
                     </tr>
                     {{-- @endcan --}}
@@ -140,6 +143,33 @@
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
          });
+         $('.delete_btn').on('click', function(event){
+            event.preventDefault();
+            swal.fire({
+            title: 'هل أنت متأكد ؟',
+            text: "! لن يكون بإمكانك التراجع ",
+            icon: 'question',
+            iconHtml: '؟',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'نعم',
+            cancelButtonText: 'لا',
+            showCancelButton: true,
+            showCloseButton: true
+      
+
+            }).then((result) => {
+            if (result.value) {
+            event.target.form.submit();
+                Swal.fire(
+                'حذف !',
+                'تم الحذف.',
+                'success'
+                )
+            }
+            })
+        });
         
        
     });

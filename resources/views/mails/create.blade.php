@@ -6,8 +6,11 @@
     <div class="p-1">
 
         <x-errors></x-errors>
-
-        <h3 class="col-12">ajouter un nouveau courrier</h3>
+        <div class="row">
+            <h3 class="col-4">ajouter un nouveau courrier</h3>
+            <p style="font-size: 8pt; color:orangered; background-color: palegreen; border-radius: 5px; padding: 5px" class="col-6">Pour éviter les doublons dans l'enregistrement du courrier, il serait utile de s'assurer que le courrier en question n'existe déja dans la liste <a style="display: inline" href="{{route('mails.index')}}" class="nav-link active">(cliquez ici pour vérifier)</a></p>
+        </div>
+      
         <form action="{{ route('mails.store') }}" method="POST" class="row">
             @csrf
             <fieldset class="m-1 border border-secondary p-1 rounded col-5">
