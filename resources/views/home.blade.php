@@ -15,6 +15,8 @@
                     @endif
 
                     <h3 dir="rtl" class="text-right">مرحبا بكم ...</h3>
+
+                    <p style="font-size: 8pt; color:orangered; background-color: palegreen; border-radius: 5px; padding: 5px" class="col-6">Pour éviter les doublons dans l'enregistrement du courrier, il serait utile de s'assurer que le courrier en question n'existe déja dans la liste <a style="display: inline" href="{{route('mails.index')}}" class="nav-link active">(cliquez ici pour vérifier)</a></p>
                     
                     {{-- <nav class="nav justify-content-center">
                       <a class="nav-link active" href="{{route('users.index')}}">users</a>
